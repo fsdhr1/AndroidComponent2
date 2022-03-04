@@ -1,0 +1,47 @@
+include ':echartModule'
+include ':orm-demo'
+include ':ORM-SpatiaRoomModule'
+include ':MapFrameUIModule', ':encryptDbModule', ':OssModule', ':ocrLocalModule'
+include ':MapFrameCoreModule'
+include ':app', ':shortVideoV2Module', ':signature', ':SmartDialogMoudle', ':AutoUpdateModule',':arcgisToolModule'
+include ':ocrModule'
+include ':selectlinearlayout', ':timepickerview',':addressSelect'
+include ':mvpBaseModule'
+include ':networkModule'
+include ':networkCompilerModule'
+include ':cameraModule'
+rootProject.name='commontool'
+include ':grandPhotosModule'
+include ':addressselectview'
+include ':locationModule'
+include ':CommonUtilModule'
+include ':locationservice'
+
+project(':echartModule').projectDir =file('../common_new/common-tool/echartModule')
+project(':orm-demo').projectDir =file('../common_new/common-tool/orm-demo')
+project(':ORM-SpatiaRoomModule').projectDir =file('../common_new/common-tool/ORM-SpatiaRoomModule')
+project(':MapFrameUIModule').projectDir =file('../common_new/common-tool/MapFrameUIModule')
+project(':encryptDbModule').projectDir =file('../common_new/common-tool/encryptDbModule')
+project(':OssModule').projectDir =file('../common_new/common-tool/OssModule')
+project(':ocrLocalModule').projectDir =file('../common_new/common-tool/ocrLocalModule')
+project(':MapFrameCoreModule').projectDir =file('../common_new/common-tool/MapFrameCoreModule')
+project(':shortVideoV2Module').projectDir =file('../common_new/common-tool/shortVideoV2Module')
+project(':signature').projectDir =file('../common_new/common-tool/signature')
+project(':SmartDialogMoudle').projectDir =file('../common_new/common-tool/SmartDialogMoudle')
+project(':AutoUpdateModule').projectDir =file('../common_new/common-tool/AutoUpdateModule')
+project(':arcgisToolModule').projectDir =file('../common_new/common-tool/arcgisToolModule')
+project(':ocrModule').projectDir =file('../common_new/common-tool/ocrModule')
+project(':selectlinearlayout').projectDir =file('../common_new/common-tool/selectlinearlayout')
+project(':timepickerview').projectDir =file('../common_new/common-tool/timepickerview')
+project(':addressSelect').projectDir =file('../common_new/common-tool/addressSelect')
+project(':mvpBaseModule').projectDir =file('../common_new/common-tool/mvpBaseModule')
+project(':networkModule').projectDir =file('../common_new/common-tool/networkModule')
+project(':networkCompilerModule').projectDir =file('../common_new/common-tool/networkCompilerModule')
+project(':cameraModule').projectDir =file('../common_new/common-tool/cameraModule')
+project(':grandPhotosModule').projectDir =file('../common_new/common-tool/grandPhotosModule')
+project(':addressselectview').projectDir =file('../common_new/common-tool/addressselectview')
+project(':locationModule').projectDir =file('../common_new/common-tool/locationModule')
+project(':CommonUtilModule').projectDir =file('../common_new/common-tool/CommonUtilModule')
+project(':locationservice').projectDir =file('../common_new/common-tool/locationservice')
+
+
