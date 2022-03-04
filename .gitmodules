@@ -23,3 +23,7 @@
 [submodule "ocr-component-project"]
     path = component/ocr-component-project
     url =  http://192.168.1.64:8010/android-sdk/ocr-component-project.git
+
+[submodule "commonUtil-component-project"]
+    path = component/commonUtil-component-project
+    url =  http://192.168.1.64:8010/android-sdk/commonUtil-component-project.git
