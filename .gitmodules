@@ -9,3 +9,7 @@
 [submodule "mvp-frame-project"]
     path = frame/mvp-frame-project
     url =  http://192.168.1.64:8010/android-sdk/mvp-frame-project.git
+
+[submodule "ORM-frame-project"]
+    path = frame/ORM-frame-project
+    url =  http://192.168.1.64:8010/android-sdk/ORM-frame-project.git
