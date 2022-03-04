@@ -18,3 +18,8 @@
 [submodule "autoUpdate-frame-project"]
     path = frame/autoUpdate-frame-project
     url =  http://192.168.1.64:8010/android-sdk/autoUpdate-frame-project.git
+
+
+[submodule "ocr-component-project"]
+    path = component/ocr-component-project
+    url =  http://192.168.1.64:8010/android-sdk/ocr-component-project.git
