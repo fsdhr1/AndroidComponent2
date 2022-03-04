@@ -5,3 +5,7 @@
 [submodule "NetWork-frame-project"]
     path = frame/NetWork-frame-project
     url =  http://192.168.1.64:8010/android-sdk/NetWork-frame-project.git
+
+[submodule "mvp-frame-project"]
+    path = frame/mvp-frame-project
+    url =  http://192.168.1.64:8010/android-sdk/mvp-frame-project.git
