@@ -24,17 +24,18 @@ project(':networkCompilerModule').projectDir =file('./frame/NetWork-frame-projec
 project(':mvpBaseModule').projectDir =file('./frame/mvp-frame-project/mvpBaseModule')
 project(':ORM-SpatiaRoomModule').projectDir =file('./frame/ORM-frame-project/ORM-SpatiaRoomModule')
 project(':AutoUpdateModule').projectDir =file('./frame/autoUpdate-frame-project/autoUpdateModule')
+project(':ocrLocalModule').projectDir =file('./component/ocr-component-project/ocrLocalModule')
+project(':ocrModule').projectDir =file('./component/ocr-component-project/ocrOnlineModule')
+project(':CommonUtilModule').projectDir =file('./component/commonUtil-component-project/commonUtilModule')
 
 project(':echartModule').projectDir =file('../common_new/common-tool/echartModule')
 project(':orm-demo').projectDir =file('../common_new/common-tool/orm-demo')
 project(':encryptDbModule').projectDir =file('../common_new/common-tool/encryptDbModule')
 project(':OssModule').projectDir =file('../common_new/common-tool/OssModule')
-project(':ocrLocalModule').projectDir =file('../common_new/common-tool/ocrLocalModule')
 project(':shortVideoV2Module').projectDir =file('../common_new/common-tool/shortVideoV2Module')
 project(':signature').projectDir =file('../common_new/common-tool/signature')
 project(':SmartDialogMoudle').projectDir =file('../common_new/common-tool/SmartDialogMoudle')
 project(':arcgisToolModule').projectDir =file('../common_new/common-tool/arcgisToolModule')
-project(':ocrModule').projectDir =file('../common_new/common-tool/ocrModule')
 project(':selectlinearlayout').projectDir =file('../common_new/common-tool/selectlinearlayout')
 project(':timepickerview').projectDir =file('../common_new/common-tool/timepickerview')
 project(':addressSelect').projectDir =file('../common_new/common-tool/addressSelect')
@@ -42,7 +43,6 @@ project(':cameraModule').projectDir =file('../common_new/common-tool/cameraModul
 project(':grandPhotosModule').projectDir =file('../common_new/common-tool/grandPhotosModule')
 project(':addressselectview').projectDir =file('../common_new/common-tool/addressselectview')
 project(':locationModule').projectDir =file('../common_new/common-tool/locationModule')
-project(':CommonUtilModule').projectDir =file('../common_new/common-tool/CommonUtilModule')
 project(':locationservice').projectDir =file('../common_new/common-tool/locationservice')
 
 
