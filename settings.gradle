@@ -37,14 +37,14 @@ project(':locationservice').projectDir =file('./component/location-component-pro
 project(':OssModule').projectDir =file('./component/oss-component-project/OssModule')
 project(':echartModule').projectDir =file('./view/echarts-view-project/echartsModule')
 project(':signature').projectDir =file('./view/signature-view-project/signatureModule')
+project(':SmartDialogMoudle').projectDir =file('./view/Dialog-view-project/SmartDialogMoudle')
+project(':addressSelect').projectDir =file('./view/addressSelect-view-project/addressSelect')
+project(':addressselectview').projectDir =file('./view/addressSelect-view-project/addressselectview')
 
-
-project(':SmartDialogMoudle').projectDir =file('../common_new/common-tool/SmartDialogMoudle')
 project(':selectlinearlayout').projectDir =file('../common_new/common-tool/selectlinearlayout')
 project(':timepickerview').projectDir =file('../common_new/common-tool/timepickerview')
-project(':addressSelect').projectDir =file('../common_new/common-tool/addressSelect')
 project(':grandPhotosModule').projectDir =file('../common_new/common-tool/grandPhotosModule')
-project(':addressselectview').projectDir =file('../common_new/common-tool/addressselectview')
+
 
 
 

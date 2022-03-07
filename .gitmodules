@@ -51,3 +51,11 @@
 [submodule "signature-view-project"]
     path = view/signature-view-project 
     url =  http://192.168.1.64:8010/android-sdk/signature-view-project.git
+
+[submodule "Dialog-view-project"]
+    path = view/Dialog-view-project
+    url =  http://192.168.1.64:8010/android-sdk/Dialog-view-project.git
+
+[submodule "addressSelect-view-project"]
+    path = view/addressSelect-view-project
+    url =  http://192.168.1.64:8010/android-sdk/addressSelect-view-project.git
