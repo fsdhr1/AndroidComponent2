@@ -1,3 +1,5 @@
+rootProject.name='common-tool-group-project'
+
 include ':echartModule'
 include ':orm-demo'
 include ':ORM-SpatiaRoomModule'
@@ -10,12 +12,48 @@ include ':mvpBaseModule'
 include ':networkModule'
 include ':networkCompilerModule'
 include ':cameraModule'
-rootProject.name='common-tool-group-project'
 include ':grandPhotosModule'
 include ':addressselectview'
 include ':locationModule'
 include ':CommonUtilModule'
 include ':locationservice'
+
+//需要在子仓库创建module时打开对应子仓库的注释
+//include ':map-frame-project'
+//project(':map-frame-project').projectDir =file('./frame/map-frame-project')
+//include ':arcgisTools-frame-project'
+//project(':arcgisTools-frame-project').projectDir =file('./frame/arcgisTools-frame-project')
+//include ':NetWork-frame-project'
+//project(':NetWork-frame-project').projectDir =file('./frame/NetWork-frame-project')
+//include ':mvp-frame-project'
+//project(':mvp-frame-project').projectDir =file('./frame/mvp-frame-project')
+//include ':ORM-frame-project'
+//project(':ORM-frame-project').projectDir =file('./frame/ORM-frame-project')
+//include ':autoUpdate-frame-project'
+//project(':autoUpdate-frame-project').projectDir =file('./frame/autoUpdate-frame-project')
+//include ':ocr-component-project'
+//project(':ocr-component-project').projectDir =file('./component/ocr-component-project')
+//include ':commonUtil-component-project'
+//project(':commonUtil-component-project').projectDir =file('./component/commonUtil-component-project')
+//include ':multimedia-component-project'
+//project(':multimedia-component-project').projectDir =file('./component/multimedia-component-project')
+//include ':location-component-project'
+//project(':location-component-project').projectDir =file('./component/location-component-project')
+//include ':oss-component-project'
+//project(':oss-component-project').projectDir =file('./component/oss-component-project')
+//include ':echarts-view-project'
+//project(':echarts-view-project').projectDir =file('./view/echarts-view-project')
+//include ':signature-view-project'
+//project(':signature-view-project').projectDir =file('./view/signature-view-project')
+//include ':Dialog-view-project'
+//project(':Dialog-view-project').projectDir =file('./view/Dialog-view-project')
+//include ':addressSelect-view-project'
+//project(':addressSelect-view-project').projectDir =file('./view/addressSelect-view-project')
+//include ':select-view-project'
+//project(':select-view-project').projectDir =file('./view/select-view-project')
+//include ':picker-view-project'
+//project(':picker-view-project').projectDir =file('./view/picker-view-project')
+
 
 project(':MapFrameCoreModule').projectDir =file('./frame/map-frame-project/MapFrameCoreModule')
 project(':MapFrameUIModule').projectDir =file('./frame/map-frame-project/MapFrameUIModule')
