@@ -42,8 +42,8 @@ project(':addressSelect').projectDir =file('./view/addressSelect-view-project/ad
 project(':addressselectview').projectDir =file('./view/addressSelect-view-project/addressselectview')
 project(':selectlinearlayout').projectDir =file('./view/select-view-project/selectlinearlayout')
 project(':timepickerview').projectDir =file('./view/picker-view-project/timepickerview')
+project(':grandPhotosModule').projectDir =file('./view/picker-view-project/grandPhotosModule')
 
-project(':grandPhotosModule').projectDir =file('../common_new/common-tool/grandPhotosModule')
 
 
 
