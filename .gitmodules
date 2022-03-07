@@ -59,3 +59,7 @@
 [submodule "addressSelect-view-project"]
     path = view/addressSelect-view-project
     url =  http://192.168.1.64:8010/android-sdk/addressSelect-view-project.git
+
+[submodule "select-view-project"]
+    path = view/select-view-project
+    url =  http://192.168.1.64:8010/android-sdk/select-view-project.git

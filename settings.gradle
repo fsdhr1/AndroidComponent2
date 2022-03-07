@@ -40,8 +40,8 @@ project(':signature').projectDir =file('./view/signature-view-project/signatureM
 project(':SmartDialogMoudle').projectDir =file('./view/Dialog-view-project/SmartDialogMoudle')
 project(':addressSelect').projectDir =file('./view/addressSelect-view-project/addressSelect')
 project(':addressselectview').projectDir =file('./view/addressSelect-view-project/addressselectview')
+project(':selectlinearlayout').projectDir =file('./view/select-view-project/selectlinearlayout')
 
-project(':selectlinearlayout').projectDir =file('../common_new/common-tool/selectlinearlayout')
 project(':timepickerview').projectDir =file('../common_new/common-tool/timepickerview')
 project(':grandPhotosModule').projectDir =file('../common_new/common-tool/grandPhotosModule')
 
