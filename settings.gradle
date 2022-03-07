@@ -35,9 +35,9 @@ project(':shortVideoV2Module').projectDir =file('./component/multimedia-componen
 project(':locationModule').projectDir =file('./component/location-component-project/locationModuleV2')
 project(':locationservice').projectDir =file('./component/location-component-project/locationModuleV1')
 project(':OssModule').projectDir =file('./component/oss-component-project/OssModule')
+project(':echartModule').projectDir =file('./view/echarts-view-project/echartsModule')
 
 
-project(':echartModule').projectDir =file('../common_new/common-tool/echartModule')
 project(':signature').projectDir =file('../common_new/common-tool/signature')
 project(':SmartDialogMoudle').projectDir =file('../common_new/common-tool/SmartDialogMoudle')
 project(':selectlinearlayout').projectDir =file('../common_new/common-tool/selectlinearlayout')
