@@ -44,6 +44,6 @@
     path = component/oss-component-project
     url =  http://192.168.1.64:8010/android-sdk/oss-component-project.git
 
-[submodule "echarts-view-project "]
+[submodule "echarts-view-project"]
     path = view/echarts-view-project 
-    url =  http://192.168.1.64:8010/android-sdk/echarts-view-project .git
+    url =  http://192.168.1.64:8010/android-sdk/echarts-view-project.git
