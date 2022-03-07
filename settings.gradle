@@ -41,8 +41,8 @@ project(':SmartDialogMoudle').projectDir =file('./view/Dialog-view-project/Smart
 project(':addressSelect').projectDir =file('./view/addressSelect-view-project/addressSelect')
 project(':addressselectview').projectDir =file('./view/addressSelect-view-project/addressselectview')
 project(':selectlinearlayout').projectDir =file('./view/select-view-project/selectlinearlayout')
+project(':timepickerview').projectDir =file('./view/picker-view-project/timepickerview')
 
-project(':timepickerview').projectDir =file('../common_new/common-tool/timepickerview')
 project(':grandPhotosModule').projectDir =file('../common_new/common-tool/grandPhotosModule')
 
 

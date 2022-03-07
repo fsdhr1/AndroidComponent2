@@ -63,3 +63,7 @@
 [submodule "select-view-project"]
     path = view/select-view-project
     url =  http://192.168.1.64:8010/android-sdk/select-view-project.git
+
+[submodule "picker-view-project"]
+    path = view/picker-view-project
+    url =  http://192.168.1.64:8010/android-sdk/picker-view-project.git
