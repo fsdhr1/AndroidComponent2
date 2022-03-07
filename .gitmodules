@@ -31,3 +31,7 @@
 [submodule "multimedia-component-project"]
     path = component/multimedia-component-project
     url =  http://192.168.1.64:8010/android-sdk/multimedia-component-project.git
+
+[submodule "location-component-project"]
+    path = component/location-component-project
+    url =  http://192.168.1.64:8010/android-sdk/location-component-project.git
