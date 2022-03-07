@@ -47,3 +47,7 @@
 [submodule "echarts-view-project"]
     path = view/echarts-view-project 
     url =  http://192.168.1.64:8010/android-sdk/echarts-view-project.git
+
+[submodule "signature-view-project"]
+    path = view/signature-view-project 
+    url =  http://192.168.1.64:8010/android-sdk/signature-view-project.git
