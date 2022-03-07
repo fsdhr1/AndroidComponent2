@@ -35,3 +35,7 @@
 [submodule "location-component-project"]
     path = component/location-component-project
     url =  http://192.168.1.64:8010/android-sdk/location-component-project.git
+
+[submodule "oss-component-project"]
+    path = component/oss-component-project
+    url =  http://192.168.1.64:8010/android-sdk/oss-component-project.git

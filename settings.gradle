@@ -10,14 +10,13 @@ include ':mvpBaseModule'
 include ':networkModule'
 include ':networkCompilerModule'
 include ':cameraModule'
-rootProject.name='commontool'
+rootProject.name='common-tool-group-project'
 include ':grandPhotosModule'
 include ':addressselectview'
 include ':locationModule'
 include ':CommonUtilModule'
 include ':locationservice'
 
-project(':app').projectDir =file('./app')
 project(':MapFrameCoreModule').projectDir =file('./frame/map-frame-project/MapFrameCoreModule')
 project(':MapFrameUIModule').projectDir =file('./frame/map-frame-project/MapFrameUIModule')
 project(':networkModule').projectDir =file('./frame/NetWork-frame-project/networkModule')
@@ -32,11 +31,11 @@ project(':cameraModule').projectDir =file('./component/multimedia-component-proj
 project(':shortVideoV2Module').projectDir =file('./component/multimedia-component-project/shortVideoV2Module')
 project(':locationModule').projectDir =file('./component/location-component-project/locationModuleV2')
 project(':locationservice').projectDir =file('./component/location-component-project/locationModuleV1')
+project(':OssModule').projectDir =file('./component/oss-component-project/OssModule')
 
 project(':echartModule').projectDir =file('../common_new/common-tool/echartModule')
 project(':orm-demo').projectDir =file('../common_new/common-tool/orm-demo')
 project(':encryptDbModule').projectDir =file('../common_new/common-tool/encryptDbModule')
-project(':OssModule').projectDir =file('../common_new/common-tool/OssModule')
 project(':signature').projectDir =file('../common_new/common-tool/signature')
 project(':SmartDialogMoudle').projectDir =file('../common_new/common-tool/SmartDialogMoudle')
 project(':arcgisToolModule').projectDir =file('../common_new/common-tool/arcgisToolModule')
