@@ -9,17 +9,21 @@ def includeModuleDir(excludeModules) {
     def files = rootDir.listFiles()
     files.toList().forEach { moduleGroupDir ->
         if (moduleGroupDir.isDirectory() && !moduleGroupDir.name.startsWith(".")
-                && moduleGroupDir.name != "app" && moduleGroupDir.name != "gradle") {
-            moduleGroupDir.listFiles().toList().forEach() { moduleDir ->
-                include(":" + moduleDir.name)
-                project(":" + moduleDir.name).projectDir = moduleDir
-                moduleDir.listFiles().toList().forEach() {
-                    if (it.isDirectory() && !excludeModules.contains(it.name)) {
-                        include(":" + it.name)
-                        project(":" + it.name).projectDir = it
+                && moduleGroupDir.name != "gradle") {
+            if(moduleGroupDir.name == "app"){
+                include(":" + moduleGroupDir.name)
+            }else {
+                moduleGroupDir.listFiles().toList().forEach() { moduleDir ->
+                    include(":" + moduleDir.name)
+                    project(":" + moduleDir.name).projectDir = moduleDir
+                    moduleDir.listFiles().toList().forEach() {
+                        if (it.isDirectory() && !excludeModules.contains(it.name)) {
+                            include(":" + it.name)
+                            project(":" + it.name).projectDir = it
+                        }
                     }
-                }
 
+                }
             }
         }
     }

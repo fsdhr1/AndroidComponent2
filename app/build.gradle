@@ -75,7 +75,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation project(path: ':shortVideoV2Module')
-    implementation project(path: ':ocrModule')
+    implementation project(path: ':ocrOnlineModule')
     implementation project(path: ':mvpBaseModule')
     //implementation(name:'mvpBaseModule-release', ext:'aar')
     implementation project(path: ':networkModule')
@@ -98,7 +98,7 @@ dependencies {
 // arcgis工具
     //implementation project(path:':arcgisToolModule')
     // 自动更新组件
-    implementation project(path: ':AutoUpdateModule')
+    implementation project(path: ':autoUpdateModule')
 //    implementation ('com.grandtech.common:common_tool_autoupdate:0.0.0.1:@aar') { transitive = true }
     // Oss组件
     implementation project(path: ':OssModule')
@@ -125,7 +125,7 @@ dependencies {
 
     //implementation('com.grandtech.common:common_address_select_view:0.0.0.5:@aar'){ transitive = true }
     implementation project(path: ':addressselectview')
-    implementation project(path: ':echartModule')
+    implementation project(path: ':echartsModule')
     // implementation('com.grandtech.common:common_tool_echart:0.0.0.2') { transitive = true }
     // 定位老版本
 //    implementation project(path: ':locationservice')
@@ -135,6 +135,6 @@ dependencies {
 //    implementation (name: 'locationModule-release', ext: 'aar')
     implementation('com.grandtech.common:common_tool_location:0.0.0.3') { transitive = true }
     // 通用工具类
-    implementation project(path: ':CommonUtilModule')
+    implementation project(path: ':commonUtilModule')
 
 }
