@@ -67,3 +67,7 @@
 [submodule "picker-view-project"]
     path = view/picker-view-project
     url =  http://192.168.1.64:8010/android-sdk/picker-view-project.git
+
+[submodule "jsBridge-frame-project"]
+    path = frame/jsBridge-frame-project
+    url =  http://192.168.1.64:8010/android-sdk/jsBridge-frame-project.git
