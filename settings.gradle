@@ -1,6 +1,5 @@
+
 rootProject.name = 'common-tool-group-project'
-
-
 def excludeModules = [""]
 includeModuleDir(excludeModules)
 
