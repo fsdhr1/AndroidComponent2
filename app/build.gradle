@@ -121,7 +121,7 @@ dependencies {
     // 图片选择器
 //    compile(name: 'grandPhotosModule-release', ext: 'aar')
 //    implementation project(path: ':grandPhotosModule')
-    implementation('com.grandtech.common:common_grand_photo_pick:0.0.0.2') { transitive = true }
+    implementation('com.grandtech.common:common_grand_photo_pick:0.0.0.4') { transitive = true }
 
     //implementation('com.grandtech.common:common_address_select_view:0.0.0.5:@aar'){ transitive = true }
     implementation project(path: ':addressselectview')
