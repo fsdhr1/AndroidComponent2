@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.gykj.addressselect.AddressWidgetUtils;
 import com.gykj.addressselect.AddressWidget;
 import com.gykj.addressselect.bean.AddreBean;
+import com.gykj.addressselect.bean.AddressUtils;
 import com.gykj.addressselect.interfaces.OnAddressSelectedListener;
 import com.gykj.commontool.R;
 
@@ -35,7 +36,7 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
         // 显示
         Button mButton = findViewById(R.id.btn_address);
         mButton.setOnClickListener(v -> {
-            mAddressWidget = AddressWidgetUtils.getInstance().getWidgetCache(AddressSelectActivity.this);
+            mAddressWidget = AddressWidgetUtils.getNewInstance().getWidgetNew(AddressSelectActivity.this);
             mAddressWidget.setOnAddressSelectedListener(AddressSelectActivity.this);
             mAddressWidget.showWidget();
 //            mAddressWidget.showWidget("21");
@@ -58,7 +59,7 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
     }
 
     private AlertDialog createAlertDialog(EditText mEditText) {
-        
+
         AlertDialog mDialog = new AlertDialog.Builder(this).setTitle("请输入区划代码")
                 .setIcon(android.R.drawable.sym_def_app_icon)
                 .setView(mEditText)
@@ -81,7 +82,7 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
     /**
      * 地址选择器选中的回调
      *
-     * @param index
+     * @param mIndex
      * @param province
      * @param city
      * @param county
@@ -89,23 +90,48 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
      * @param village
      */
     @Override
-    public void onAddressSelected(int index, AddreBean province, AddreBean city, AddreBean county, AddreBean town, AddreBean village) {
-        switch (index) {
+    public void onAddressSelected(int mIndex, AddreBean province, AddreBean city, AddreBean county, AddreBean town, AddreBean village) {
+        switch (mIndex) {
             case INDEX_TAB_PROVINCE: //
                 // 根据省份 查询 城市
-                mAddressWidget.getController().retrieveCitiesWith(province.getQhdm());
+                String mQhdm = province.getQhdm();
+                String mQhmc = province.getQhmc();
+                if (AddressUtils.isParentAddress(mQhdm)) {
+                    Toast.makeText(this, mQhmc, Toast.LENGTH_SHORT).show();
+                } else {
+                    mAddressWidget.getController().retrieveCitiesWith(mQhdm);
+                }
+
                 break;
             case INDEX_TAB_CITY://
                 // 根据城市 查询 县
-                mAddressWidget.getController().retrieveCountiesWith(city.getQhdm());
+                String mCityQhdm = city.getQhdm();
+                String mCityQhmc = city.getQhmc();
+                if (AddressUtils.isParentAddress(mCityQhdm)) {
+                    Toast.makeText(this, mCityQhmc, Toast.LENGTH_SHORT).show();
+                } else {
+                    mAddressWidget.getController().retrieveCountiesWith(mCityQhdm);
+                }
                 break;
             case INDEX_TAB_COUNTY://
                 // 根据县找到乡
-                mAddressWidget.getController().retrieveTownWith(county.getQhdm());
+                String mCountyQhdm = county.getQhdm();
+                String mCountyQhmc = county.getQhmc();
+                if (AddressUtils.isParentAddress(mCountyQhdm)) {
+                    Toast.makeText(this, mCountyQhmc, Toast.LENGTH_SHORT).show();
+                } else {
+                    mAddressWidget.getController().retrieveTownWith(mCountyQhdm);
+                }
                 break;
             case INDEX_TAB_TOWN:
                 // 根据乡找到村
-                mAddressWidget.getController().retrieveVillage(town.getQhdm());
+                String mTownQhdm = town.getQhdm();
+                String mTownQhmc = town.getQhmc();
+                if (AddressUtils.isParentAddress(mTownQhdm)) {
+                    Toast.makeText(this, mTownQhmc, Toast.LENGTH_SHORT).show();
+                } else {
+                    mAddressWidget.getController().retrieveVillage(mTownQhdm);
+                }
                 break;
             case INDEX_TAB_VILLAGE://
                 String liveAddress = "";

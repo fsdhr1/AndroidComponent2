@@ -114,7 +114,8 @@ dependencies {
     //implementation('com.grandtech.common:common_tool_cameramodule:0.0.0.1') { transitive = true }// 相机组件
     implementation project(path: ':ocrLocalModule')
 
-    implementation project(path: ':addressSelect')
+//    implementation project(path: ':addressSelect')
+    compile(name: 'addressSelect-release', ext: 'aar')
 //    implementation('com.grandtech.common:common_address_select:0.0.0.4.2') { transitive = true }
 
     //  compile 'com.grandtech.common:common_tool_spatialite:1.0'
