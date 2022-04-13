@@ -17,6 +17,7 @@ import com.gykj.addressselect.AddressWidget;
 import com.gykj.addressselect.bean.AddreBean;
 import com.gykj.addressselect.bean.AddressUtils;
 import com.gykj.addressselect.interfaces.OnAddressSelectedListener;
+import com.gykj.addressselect.interfaces.onAddressConfirmClick;
 import com.gykj.commontool.R;
 
 import static com.gykj.addressselect.AddressViewsController.INDEX_TAB_CITY;
@@ -29,6 +30,8 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
 
     AddressWidget mAddressWidget;
 
+    AddreBean mSelectBean;// 选中的地址
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,15 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
         mButton.setOnClickListener(v -> {
             mAddressWidget = AddressWidgetUtils.getNewInstance().getWidgetNew(AddressSelectActivity.this);
             mAddressWidget.setOnAddressSelectedListener(AddressSelectActivity.this);
+            mAddressWidget.setAddressStyle(AddressWidget.TYPE_CUSTOM_HEADER, new onAddressConfirmClick() {
+                @Override
+                public void onAddressConfirmResp() {
+                    if (mSelectBean != null) {
+                        Toast.makeText(AddressSelectActivity.this, mSelectBean.getQhmc(), Toast.LENGTH_SHORT).show();
+                        mAddressWidget.onDissWidget();
+                    }
+                }
+            });
             mAddressWidget.showWidget();
 //            mAddressWidget.showWidget("21");
 //            mAddressWidget.onDissWidget();
@@ -69,7 +81,8 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
                         String input = mEditText.getText().toString().trim();
                         if (TextUtils.isEmpty(input)) return;
 //                        mBottomAddressDialog.showDialog(input);
-                        AddressWidgetUtils.getInstance().getWidgetNew(AddressSelectActivity.this)
+                        mAddressWidget = AddressWidgetUtils.getInstance().getWidgetNew(AddressSelectActivity.this);
+                        mAddressWidget
                                 .setOnAddressSelectedListener(AddressSelectActivity.this::onAddressSelected)
                                 .showWidget(input);
                         mInterface.dismiss();
@@ -97,8 +110,9 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
                 String mQhdm = province.getQhdm();
                 String mQhmc = province.getQhmc();
                 if (AddressUtils.isParentAddress(mQhdm)) {
-                    Toast.makeText(this, mQhmc, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, mSelectBean.getQhmc(), Toast.LENGTH_SHORT).show();
                 } else {
+                    mSelectBean = province;
                     mAddressWidget.getController().retrieveCitiesWith(mQhdm);
                 }
 
@@ -108,8 +122,10 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
                 String mCityQhdm = city.getQhdm();
                 String mCityQhmc = city.getQhmc();
                 if (AddressUtils.isParentAddress(mCityQhdm)) {
-                    Toast.makeText(this, mCityQhmc, Toast.LENGTH_SHORT).show();
+                    mSelectBean = province;
+                    Toast.makeText(this, mSelectBean.getQhmc(), Toast.LENGTH_SHORT).show();
                 } else {
+                    mSelectBean = city;
                     mAddressWidget.getController().retrieveCountiesWith(mCityQhdm);
                 }
                 break;
@@ -118,8 +134,10 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
                 String mCountyQhdm = county.getQhdm();
                 String mCountyQhmc = county.getQhmc();
                 if (AddressUtils.isParentAddress(mCountyQhdm)) {
-                    Toast.makeText(this, mCountyQhmc, Toast.LENGTH_SHORT).show();
+                    mSelectBean = city;
+                    Toast.makeText(this, mSelectBean.getQhmc(), Toast.LENGTH_SHORT).show();
                 } else {
+                    mSelectBean = county;
                     mAddressWidget.getController().retrieveTownWith(mCountyQhdm);
                 }
                 break;
@@ -128,8 +146,10 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
                 String mTownQhdm = town.getQhdm();
                 String mTownQhmc = town.getQhmc();
                 if (AddressUtils.isParentAddress(mTownQhdm)) {
-                    Toast.makeText(this, mTownQhmc, Toast.LENGTH_SHORT).show();
+                    mSelectBean = county;
+                    Toast.makeText(this, mSelectBean.getQhmc(), Toast.LENGTH_SHORT).show();
                 } else {
+                    mSelectBean = town;
                     mAddressWidget.getController().retrieveVillage(mTownQhdm);
                 }
                 break;
@@ -146,7 +166,15 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
                 if (village != null)
                     liveAddress += village.getQhmc();
 
-                Toast.makeText(this, liveAddress, Toast.LENGTH_SHORT).show();
+                //
+                String mTownQhmc1 = town.getQhmc();
+                if (AddressUtils.isParentAddress(mTownQhmc1)) {
+                    mSelectBean = town;
+                    Toast.makeText(this, mSelectBean.getQhmc(), Toast.LENGTH_SHORT).show();
+                } else {
+                    mSelectBean = village;
+                    Toast.makeText(this, mSelectBean.getQhmc(), Toast.LENGTH_SHORT).show();
+                }
                 //  mBottomAddressDialog.dissmissDialog();
                 break;
         }
