@@ -84,7 +84,7 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
                         mAddressWidget = AddressWidgetUtils.getInstance().getWidgetNew(AddressSelectActivity.this);
                         mAddressWidget
                                 .setOnAddressSelectedListener(AddressSelectActivity.this::onAddressSelected)
-                                .showWidget(input);
+                                .showWidget(input, "名称");
                         mInterface.dismiss();
                     }
                 }).setNegativeButton("取消", null).create();
@@ -109,11 +109,11 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
                 // 根据省份 查询 城市
                 String mQhdm = province.getQhdm();
                 String mQhmc = province.getQhmc();
-                if (AddressUtils.isParentAddress(mQhdm)) {
+                if (AddressUtils.isParentAddress(province)) {
                     Toast.makeText(this, mSelectBean.getQhmc(), Toast.LENGTH_SHORT).show();
                 } else {
                     mSelectBean = province;
-                    mAddressWidget.getController().retrieveCitiesWith(mQhdm);
+                    mAddressWidget.getController().retrieveCitiesWith(province);
                 }
 
                 break;
@@ -121,36 +121,36 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
                 // 根据城市 查询 县
                 String mCityQhdm = city.getQhdm();
                 String mCityQhmc = city.getQhmc();
-                if (AddressUtils.isParentAddress(mCityQhdm)) {
+                if (AddressUtils.isParentAddress(city)) {
                     mSelectBean = province;
                     Toast.makeText(this, mSelectBean.getQhmc(), Toast.LENGTH_SHORT).show();
                 } else {
                     mSelectBean = city;
-                    mAddressWidget.getController().retrieveCountiesWith(mCityQhdm);
+                    mAddressWidget.getController().retrieveCountiesWith(city);
                 }
                 break;
             case INDEX_TAB_COUNTY://
                 // 根据县找到乡
                 String mCountyQhdm = county.getQhdm();
                 String mCountyQhmc = county.getQhmc();
-                if (AddressUtils.isParentAddress(mCountyQhdm)) {
+                if (AddressUtils.isParentAddress(county)) {
                     mSelectBean = city;
                     Toast.makeText(this, mSelectBean.getQhmc(), Toast.LENGTH_SHORT).show();
                 } else {
                     mSelectBean = county;
-                    mAddressWidget.getController().retrieveTownWith(mCountyQhdm);
+                    mAddressWidget.getController().retrieveTownWith(county);
                 }
                 break;
             case INDEX_TAB_TOWN:
                 // 根据乡找到村
                 String mTownQhdm = town.getQhdm();
                 String mTownQhmc = town.getQhmc();
-                if (AddressUtils.isParentAddress(mTownQhdm)) {
+                if (AddressUtils.isParentAddress(town)) {
                     mSelectBean = county;
                     Toast.makeText(this, mSelectBean.getQhmc(), Toast.LENGTH_SHORT).show();
                 } else {
                     mSelectBean = town;
-                    mAddressWidget.getController().retrieveVillage(mTownQhdm);
+                    mAddressWidget.getController().retrieveVillage(town);
                 }
                 break;
             case INDEX_TAB_VILLAGE://
@@ -168,7 +168,7 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
 
                 //
                 String mTownQhmc1 = town.getQhmc();
-                if (AddressUtils.isParentAddress(mTownQhmc1)) {
+                if (AddressUtils.isParentAddress(village)) {
                     mSelectBean = town;
                     Toast.makeText(this, mSelectBean.getQhmc(), Toast.LENGTH_SHORT).show();
                 } else {
