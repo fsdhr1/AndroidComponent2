@@ -98,7 +98,7 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.textSize;
 public class MapActivityDome1 extends AppCompatActivity implements IOnMapReady, IMapEvent, SelectionSet.ISelectSetChange, IToolInterceptor, PermissionsListener {
     public final static String TAG  = "com.grandtech.mapframe.ui.MapActivityDome1";
 
-    private PermissionsManager permissionsManager;
+    private  PermissionsManager permissionsManager;
     private GMapView gMapView;
 
     private FrameLayout flMainFrame ;
