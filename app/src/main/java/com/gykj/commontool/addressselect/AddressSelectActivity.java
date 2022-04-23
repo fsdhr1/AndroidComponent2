@@ -41,15 +41,6 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
         mButton.setOnClickListener(v -> {
             mAddressWidget = AddressWidgetUtils.getNewInstance().getWidgetNew(AddressSelectActivity.this);
             mAddressWidget.setOnAddressSelectedListener(AddressSelectActivity.this);
-            mAddressWidget.setAddressStyle(AddressWidget.TYPE_CUSTOM_HEADER, new onAddressConfirmClick() {
-                @Override
-                public void onAddressConfirmResp() {
-                    if (mSelectBean != null) {
-                        Toast.makeText(AddressSelectActivity.this, mSelectBean.getQhmc(), Toast.LENGTH_SHORT).show();
-                        mAddressWidget.onDissWidget();
-                    }
-                }
-            });
             mAddressWidget.showWidget();
 //            mAddressWidget.showWidget("21");
 //            mAddressWidget.onDissWidget();
@@ -64,6 +55,19 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
             public void onClick(View mView) {
                 if (mDialog != null) {
                     mDialog.show();
+                }
+            }
+        });
+
+        // 自定义 - 手动输入区划代码
+        Button mBtqhdm2 = findViewById(R.id.btn_input_custom_address);
+        EditText mEditText2 = new EditText(this);
+        AlertDialog mDialog2 = createCustomAddressAlertDialog(mEditText2);
+        mBtqhdm2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View mView) {
+                if (mDialog2 != null) {
+                    mDialog2.show();
                 }
             }
         });
@@ -84,7 +88,36 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
                         mAddressWidget = AddressWidgetUtils.getInstance().getWidgetNew(AddressSelectActivity.this);
                         mAddressWidget
                                 .setOnAddressSelectedListener(AddressSelectActivity.this::onAddressSelected)
-                                .showWidget(input, "名称");
+                                .showWidget(input);
+                        mInterface.dismiss();
+                    }
+                }).setNegativeButton("取消", null).create();
+        return mDialog;
+    }
+
+    private AlertDialog createCustomAddressAlertDialog(EditText mEditText) {
+
+        AlertDialog mDialog = new AlertDialog.Builder(this).setTitle("请输入区划代码")
+                .setIcon(android.R.drawable.sym_def_app_icon)
+                .setView(mEditText)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface mInterface, int i) {
+                        String input = mEditText.getText().toString().trim();
+                        if (TextUtils.isEmpty(input)) return;
+//                        mBottomAddressDialog.showDialog(input);
+                        mAddressWidget = AddressWidgetUtils.getInstance().getWidgetNew(AddressSelectActivity.this);
+                        mAddressWidget
+                                .setOnAddressSelectedListener(AddressSelectActivity.this::onAddressSelected)
+                                .showWidget(input, "名称", new onAddressConfirmClick() {
+                                    @Override
+                                    public void onAddressConfirmResp() {
+                                        if (mSelectBean != null) {
+                                            Toast.makeText(AddressSelectActivity.this, mSelectBean.getQhmc(), Toast.LENGTH_SHORT).show();
+                                            mAddressWidget.onDissWidget();
+                                        }
+                                    }
+                                });
                         mInterface.dismiss();
                     }
                 }).setNegativeButton("取消", null).create();
@@ -109,10 +142,10 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
                 // 根据省份 查询 城市
                 String mQhdm = province.getQhdm();
                 String mQhmc = province.getQhmc();
+                mSelectBean = province;
                 if (AddressUtils.isParentAddress(province)) {
                     Toast.makeText(this, mSelectBean.getQhmc(), Toast.LENGTH_SHORT).show();
                 } else {
-                    mSelectBean = province;
                     mAddressWidget.getController().retrieveCitiesWith(province);
                 }
 
@@ -121,11 +154,10 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
                 // 根据城市 查询 县
                 String mCityQhdm = city.getQhdm();
                 String mCityQhmc = city.getQhmc();
+                mSelectBean = city;
                 if (AddressUtils.isParentAddress(city)) {
-                    mSelectBean = province;
                     Toast.makeText(this, mSelectBean.getQhmc(), Toast.LENGTH_SHORT).show();
                 } else {
-                    mSelectBean = city;
                     mAddressWidget.getController().retrieveCountiesWith(city);
                 }
                 break;
@@ -133,11 +165,10 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
                 // 根据县找到乡
                 String mCountyQhdm = county.getQhdm();
                 String mCountyQhmc = county.getQhmc();
+                mSelectBean = county;
                 if (AddressUtils.isParentAddress(county)) {
-                    mSelectBean = city;
                     Toast.makeText(this, mSelectBean.getQhmc(), Toast.LENGTH_SHORT).show();
                 } else {
-                    mSelectBean = county;
                     mAddressWidget.getController().retrieveTownWith(county);
                 }
                 break;
@@ -145,11 +176,10 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
                 // 根据乡找到村
                 String mTownQhdm = town.getQhdm();
                 String mTownQhmc = town.getQhmc();
+                mSelectBean = town;
                 if (AddressUtils.isParentAddress(town)) {
-                    mSelectBean = county;
                     Toast.makeText(this, mSelectBean.getQhmc(), Toast.LENGTH_SHORT).show();
                 } else {
-                    mSelectBean = town;
                     mAddressWidget.getController().retrieveVillage(town);
                 }
                 break;
@@ -167,12 +197,10 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
                     liveAddress += village.getQhmc();
 
                 //
-                String mTownQhmc1 = town.getQhmc();
+                mSelectBean = village;
                 if (AddressUtils.isParentAddress(village)) {
-                    mSelectBean = town;
                     Toast.makeText(this, mSelectBean.getQhmc(), Toast.LENGTH_SHORT).show();
                 } else {
-                    mSelectBean = village;
                     Toast.makeText(this, mSelectBean.getQhmc(), Toast.LENGTH_SHORT).show();
                 }
                 //  mBottomAddressDialog.dissmissDialog();

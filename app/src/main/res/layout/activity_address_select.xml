@@ -18,14 +18,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="显示地址选择器" />
+            android:text="普通显示地址选择器" />
 
         <Button
             android:id="@+id/btn_input_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="根据区划选择下级区划" />
+            android:text="普通地址选择器-根据区划选择下级区划" />
+
+        <Button
+            android:id="@+id/btn_input_custom_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="自定义-根据区划选择下级区划" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
