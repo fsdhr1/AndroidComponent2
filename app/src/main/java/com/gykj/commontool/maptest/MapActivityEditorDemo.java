@@ -48,6 +48,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -160,7 +161,9 @@ public class MapActivityEditorDemo extends AppCompatActivity implements View.OnC
             String layerId =
                     mGMapView.getBaseEditor(graphicSettingLine)
                             .getGraphicContainer().getQueryLayerId();
-            mGMapView.initSelection("id",new SelectSetting(true,true,true,"省域"));
+            LinkedHashMap customIds = new LinkedHashMap();
+            customIds.put("省域","id");
+            mGMapView.initSelection(customIds,new SelectSetting(true,true,true,"省域"));
             graphicSetting = graphicSettingLine;
         }
 

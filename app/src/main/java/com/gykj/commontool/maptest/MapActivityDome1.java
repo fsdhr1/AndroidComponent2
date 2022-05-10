@@ -145,7 +145,7 @@ public class MapActivityDome1 extends AppCompatActivity implements IOnMapReady, 
             @Override
             public void onClick(View view) {
                 clearAmbientCache();
-                gMapView.moveToLocation(25.445684, 114.438901 ,15.5);//lot=114.4352&lat=25.44723http://gykj123.cn:8849/grandtech-middleground-maptile/api/v1/wms/jbnt_pic/?lot=114.4352&lat=25.44723&z=16.46&width=1276&height=1276&ratio=2
+                gMapView.moveToLocation(25.445684, 114.438901 ,15.5,null);//lot=114.4352&lat=25.44723http://gykj123.cn:8849/grandtech-middleground-maptile/api/v1/wms/jbnt_pic/?lot=114.4352&lat=25.44723&z=16.46&width=1276&height=1276&ratio=2
                 if(gMapView.isStartSketch()){
                     gMapView.getBaseEditor(mGraphicSetting).drawFeature(add.getTransitionName(),false, MapActivityDome1.this,gMapView.getSketchGeometry());
                     gMapView.clearSelectSetAndRender();

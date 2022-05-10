@@ -319,7 +319,7 @@ public class MapSnapshotTest  extends AppCompatActivity implements IOnMapReady, 
                 mGMapView.initSelection();
                 mGMapView.setSelectSetting(new SelectSetting(true,true,"种植地块"));
                 mGMapView.setMapEvent(MapSnapshotTest.this);
-                mGMapView.moveToLocation(34.09768527002947,114.46451392126596, 16.0);
+                mGMapView.moveToLocation(34.09768527002947,114.46451392126596, 16.0,null);
                 ((MyApplication)MapSnapshotTest.this.getApplication()).gMapView =  mGMapView;
             }
         });
