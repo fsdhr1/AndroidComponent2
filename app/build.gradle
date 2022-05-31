@@ -83,7 +83,7 @@ dependencies {
     //implementation ('com.grandtech.common:common_tool_mvp:0.0.0.2:@aar') { transitive = true }
     implementation project(path: ':SmartDialogMoudle')
 //    implementation('com.grandtech.common:common_tool_common_dialog:0.0.0.7:@aar') { transitive = true }
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.30.1'
     implementation('com.grandtech.common:common_tool_signature:0.0.0.1:@aar') { transitive = true }
 // 签字组件
     // 引用的第三方框架及推荐版本号
