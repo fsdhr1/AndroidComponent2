@@ -26,6 +26,9 @@ import static com.gykj.addressselect.AddressViewsController.INDEX_TAB_PROVINCE;
 import static com.gykj.addressselect.AddressViewsController.INDEX_TAB_TOWN;
 import static com.gykj.addressselect.AddressViewsController.INDEX_TAB_VILLAGE;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddressSelectActivity extends AppCompatActivity implements OnAddressSelectedListener {
 
     AddressWidget mAddressWidget;
@@ -68,6 +71,19 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
             public void onClick(View mView) {
                 if (mDialog2 != null) {
                     mDialog2.show();
+                }
+            }
+        });
+
+        // 自定义 - 手动输入区划代码
+        Button mBtqhdm3 = findViewById(R.id.btn_list_custom_address);
+        EditText mEditText3 = new EditText(this);
+        AlertDialog mDialog3 = createCustomAddressListAlertDialog(mEditText3);
+        mBtqhdm3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View mView) {
+                if (mDialog3 != null) {
+                    mDialog3.show();
                 }
             }
         });
@@ -118,6 +134,39 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
                                         }
                                     }
                                 });
+                        mInterface.dismiss();
+                    }
+                }).setNegativeButton("取消", null).create();
+        return mDialog;
+    }
+
+    private AlertDialog createCustomAddressListAlertDialog(EditText mEditText) {
+
+        AlertDialog mDialog = new AlertDialog.Builder(this).setTitle("请选择区划")
+                .setIcon(android.R.drawable.sym_def_app_icon)
+//                .setView(mEditText)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface mInterface, int index) {
+
+                        List<AddreBean> mList = new ArrayList<>();
+
+                        for (int i = 0; i < 2; i++) {
+                            AddreBean mBean = new AddreBean();
+                            if (i == 0) {
+                                mBean.setQhdm("1301");
+                                mBean.setQhmc("石家庄");
+                            } else if (i == 1) {
+                                mBean.setQhdm("2101");
+                                mBean.setQhmc("沈阳市");
+                            }
+                            mList.add(mBean);
+                        }
+
+                        mAddressWidget = AddressWidgetUtils.getInstance().getWidgetNew(AddressSelectActivity.this);
+                        mAddressWidget
+                                .setOnAddressSelectedListener(AddressSelectActivity.this::onAddressSelected)
+                                .showWidgetList(mList);
                         mInterface.dismiss();
                     }
                 }).setNegativeButton("取消", null).create();
