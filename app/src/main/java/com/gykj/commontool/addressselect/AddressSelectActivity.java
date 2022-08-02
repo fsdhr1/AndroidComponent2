@@ -39,20 +39,37 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address_select);
-        // 显示
+        /**
+         * 显示普通地址选择器
+         */
         Button mButton = findViewById(R.id.btn_address);
         mButton.setOnClickListener(v -> {
             mAddressWidget = AddressWidgetUtils.getNewInstance().getWidgetNew(AddressSelectActivity.this);
             mAddressWidget.setOnAddressSelectedListener(AddressSelectActivity.this);
             mAddressWidget.showWidget();
-//            mAddressWidget.showWidget("21");
-//            mAddressWidget.onDissWidget();
         });
 
-        // 手动输入区划代码
-        Button mBtqhdm = findViewById(R.id.btn_input_address);
+        /**
+         * 输入父级区划显示子集区划列表
+         */
+        Button mBtqhdmsss = findViewById(R.id.btn_input_address);
+        EditText mEditText2sss = new EditText(this);
+        AlertDialog mDialog22 = createAlertDialog(mEditText2sss);
+        mBtqhdmsss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View mView) {
+                if (mDialog22 != null) {
+                    mDialog22.show();
+                }
+            }
+        });
+
+        /**
+         * 输入父级qhdm、qhmc；且显示在第一项
+         */
+        Button mBtqhdm = findViewById(R.id.btn_input_head_address);
         EditText mEditText = new EditText(this);
-        AlertDialog mDialog = createAlertDialog(mEditText);
+        AlertDialog mDialog = createAlertDialog22(mEditText);
         mBtqhdm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View mView) {
@@ -62,7 +79,9 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
             }
         });
 
-        // 自定义 - 手动输入区划代码
+        /**
+         * 自定义 - 手动输入区划代码，可选择到任一级别
+         */
         Button mBtqhdm2 = findViewById(R.id.btn_input_custom_address);
         EditText mEditText2 = new EditText(this);
         AlertDialog mDialog2 = createCustomAddressAlertDialog(mEditText2);
@@ -75,7 +94,9 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
             }
         });
 
-        // 自定义 - 手动输入区划代码
+        /**
+         * 自定义 - 输入区划代码列表--选择其子集
+         */
         Button mBtqhdm3 = findViewById(R.id.btn_list_custom_address);
         EditText mEditText3 = new EditText(this);
         AlertDialog mDialog3 = createCustomAddressListAlertDialog(mEditText3);
@@ -105,6 +126,27 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
                         mAddressWidget
                                 .setOnAddressSelectedListener(AddressSelectActivity.this::onAddressSelected)
                                 .showWidget(input);
+                        mInterface.dismiss();
+                    }
+                }).setNegativeButton("取消", null).create();
+        return mDialog;
+    }
+
+    private AlertDialog createAlertDialog22(EditText mEditText) {
+
+        AlertDialog mDialog = new AlertDialog.Builder(this).setTitle("请输入区划代码")
+                .setIcon(android.R.drawable.sym_def_app_icon)
+                .setView(mEditText)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface mInterface, int i) {
+                        String input = mEditText.getText().toString().trim();
+                        if (TextUtils.isEmpty(input)) return;
+//                        mBottomAddressDialog.showDialog(input);
+                        mAddressWidget = AddressWidgetUtils.getInstance().getWidgetNew(AddressSelectActivity.this);
+                        mAddressWidget
+                                .setOnAddressSelectedListener(AddressSelectActivity.this::onAddressSelected)
+                                .showWidget(input, "第一项为区划名称");
                         mInterface.dismiss();
                     }
                 }).setNegativeButton("取消", null).create();

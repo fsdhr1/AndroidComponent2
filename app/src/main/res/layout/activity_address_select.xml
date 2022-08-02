@@ -28,11 +28,18 @@
             android:text="普通地址选择器-根据区划选择下级区划" />
 
         <Button
+            android:id="@+id/btn_input_head_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="普通-根据区划选择下级-第一项是当前区划" />
+
+        <Button
             android:id="@+id/btn_input_custom_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="自定义-根据区划选择下级区划" />
+            android:text="自定义-根据区划选择下级-可选择到任意区划" />
 
         <Button
             android:id="@+id/btn_list_custom_address"
