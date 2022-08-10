@@ -162,7 +162,7 @@ public class MapActivityEditorDemo extends AppCompatActivity implements View.OnC
                     mGMapView.getBaseEditor(graphicSettingLine)
                             .getGraphicContainer().getQueryLayerId();
             LinkedHashMap customIds = new LinkedHashMap();
-            customIds.put("省域","id");
+            customIds.put("种植地块", "id");
             mGMapView.initSelection(customIds,new SelectSetting(true,true,true,"省域"));
             graphicSetting = graphicSettingLine;
         }

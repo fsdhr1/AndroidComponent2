@@ -106,6 +106,7 @@ dependencies {
 
     //implementation('com.grandtech.common:common_tool_mapcore:0.0.4.8:@aar') { transitive = true }
     implementation project(':MapFrameCoreModule')
+    //implementation project(':MapFrameCoreModuleV10')
     implementation project(':MapFrameUIModule')
     // implementation ('com.grandtech.common:common_tool_mapcore:0.0.2.8:@aar') { transitive = true }
     //annotationProcessor ('com.grandtech.common:common_tool_network_compiler:0.0.0.3')

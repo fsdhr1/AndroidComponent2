@@ -249,7 +249,7 @@ public class MapActivityDome1 extends AppCompatActivity implements IOnMapReady, 
                 String regionWkt = "POLYGON((115.415514265 39.44213985,115.415514265 41.059078212,117.505956876 41.059078212,117.505956876 39.44213985,115.415514265 39.44213985))";
 
                 gMapView.getStyleLayerManager().highLightRegion(regionWkt,null);
-                gMapView.moveToLocation(regionWkt);
+                gMapView.moveToLocation(regionWkt,null);
             }
         });
         qxgl.setOnClickListener(new View.OnClickListener() {
@@ -326,7 +326,7 @@ public class MapActivityDome1 extends AppCompatActivity implements IOnMapReady, 
                         Log.i("gmbgl","getStyleLayerGroupsAsync:"+result.toString());
                     }
                 });
-                Log.i("gmbgl","uri:"+gMapView.getStyleLayerManager().getSourceUri("dt_gj"));
+//                Log.i("gmbgl","uri:"+gMapView.getStyleLayerManager().getSourceUri("dt_gj"));
 
                // String layerJson = gMapView.getStyleLayerManager().getLayerJson("园地");
                 //Log.i("gmbgl","园地:"+layerJson);
