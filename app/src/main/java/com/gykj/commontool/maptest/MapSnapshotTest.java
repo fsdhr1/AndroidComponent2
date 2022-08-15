@@ -1,6 +1,7 @@
 package com.gykj.commontool.maptest;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.PointF;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.grandtech.mapframe.core.GMap;
 import com.grandtech.mapframe.core.event.IMapEvent;
 import com.grandtech.mapframe.core.maps.GMapView;
@@ -25,12 +27,16 @@ import com.grandtech.mapframe.core.select.SelectSetting;
 import com.grandtech.mapframe.core.snapshot.AutoMapSnapshot;
 import com.grandtech.mapframe.core.snapshot.ManualMapSnapshotActivity;
 import com.grandtech.mapframe.core.snapshot.bean.SnapParam;
+import com.grandtech.mapframe.core.snapshot.custom.MapScreenshotTool;
+import com.grandtech.mapframe.core.snapshot.custom.ScreenshotsFeatureStye;
+import com.grandtech.mapframe.core.snapshot.custom.ScreenshotsSetting;
 import com.grandtech.mapframe.core.util.FeatureSet;
 import com.grandtech.mapframe.core.util.StringEngine;
 import com.grandtech.mapframe.core.util.StyleJsonBuilder;
 import com.gykj.commontool.MyApplication;
 import com.gykj.commontool.R;
 import com.mapbox.geojson.Feature;
+import com.mapbox.geojson.FeatureCollection;
 import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.annotations.Polygon;
 import com.mapbox.mapboxsdk.annotations.Polyline;
@@ -42,9 +48,12 @@ import com.mapbox.mapboxsdk.style.layers.FillLayer;
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory;
 import com.mapbox.mapboxsdk.style.sources.VectorSource;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import okhttp3.Interceptor;
@@ -71,7 +80,7 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.fillColor;
  */
 public class MapSnapshotTest  extends AppCompatActivity implements IOnMapReady, IMapEvent {
 
-    private Button auto,auto1,custom,manual;
+    private Button auto,auto1,custom,manual,customAuto;
     private GMapView mGMapView;
     private AutoMapSnapshot mAutoMapSnapshot;
     private FillLayer layer;
@@ -88,6 +97,7 @@ public class MapSnapshotTest  extends AppCompatActivity implements IOnMapReady, 
         custom = findViewById(R.id.custom);
         manual = findViewById(R.id.manual);
         mGMapView = findViewById(R.id.mapView);
+        customAuto = findViewById(R.id.custom_auto);
         handler = new Handler();
         mGMapView.init(this);
         auto1.setOnClickListener(new View.OnClickListener() {
@@ -232,6 +242,40 @@ public class MapSnapshotTest  extends AppCompatActivity implements IOnMapReady, 
                 intent.putExtra(ManualMapSnapshotActivity.STYLEJSON,styleJosn);
                 intent.putExtra(ManualMapSnapshotActivity.SNAPPARAM,snapParam.toJson());
                 startActivityForResult(intent,100);
+            }
+        });
+        customAuto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s = readLocalJson(MapSnapshotTest.this, "b.json");
+                FeatureCollection featureCollection = FeatureCollection.fromJson(s);
+
+                List<Feature> features = featureCollection.features();
+                for (Feature feature : features) {
+                    ScreenshotsSetting screenshotsSetting= new ScreenshotsSetting();
+                    screenshotsSetting.setImageUrl("https://t0.tianditu.gov.cn/DataServer?T=img_w&x={x}&y={y}&l={z}&tk=583e63953a6ed6bf304e68120db4c512");
+                    ScreenshotsFeatureStye screenshotsFeatureStye = new ScreenshotsFeatureStye();
+                    screenshotsFeatureStye.setFeature(feature);
+                    screenshotsSetting.addScreenshotsFeatureStye(screenshotsFeatureStye);
+                   // String[] split = snapParam.getWaterMark().split(";");
+                    //screenshotsSetting.setWaters(Arrays.asList(split));
+                    String cachePath = Environment.getExternalStorageDirectory().getAbsolutePath()+ File.separator+"toolmapframe" + File.separator +
+                            "自定义" + File.separator + StringEngine.get32UUID() +".png";
+                    MapScreenshotTool.createMapScreenshotsAsync(screenshotsSetting,cachePath, new MapScreenshotTool.ICallBack() {
+                        @Override
+                        public void onError(Throwable e) {
+                           // iCallBack.onError(e);
+                            LogUtils.i("自定义方式生成失败");
+                        }
+
+                        @Override
+                        public void complete(ScreenshotsSetting screenshotsSetting, String path) {
+                            LogUtils.i("自定义方式生成成功："+path);
+                        }
+                    });
+                }
+
+
             }
         });
     }
@@ -465,5 +509,20 @@ public class MapSnapshotTest  extends AppCompatActivity implements IOnMapReady, 
     @Override
     public boolean onTouchCancel(MotionEvent motionEvent) {
         return false;
+    }
+
+    private   String readLocalJson(Context context, String fileName){
+        String jsonString="";
+        String resultString="";
+        try {
+            BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(
+                    context.getResources().getAssets().open(fileName)));
+            while ((jsonString=bufferedReader.readLine())!=null) {
+                resultString+=jsonString;
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        return resultString;
     }
 }
