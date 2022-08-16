@@ -8,6 +8,8 @@ import com.gykj.mvpbasemodule.MvpBaseModule;
 import com.gykj.networkmodule.NetworkHelper;
 import com.mapbox.android.core.crashreporter.CrashReport;
 
+import leakcanary.LeakCanary;
+
 /**
  * @author zyp
  * 2021/2/26
@@ -25,5 +27,6 @@ public class MyApplication extends Application {
         NetworkHelper.addDefaultSuccessCode(200);
         //
         GrandPhotoHelper.init("com.gykj.commontool.autoupdatefileprovider");
+
     }
 }

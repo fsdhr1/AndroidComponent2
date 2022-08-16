@@ -13,12 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cazaea.sweetalert.SweetAlertDialog;
-import com.grandtech.mapframe.core.util.FileUtil;
+//import com.grandtech.mapframe.core.util.FileUtil;
 import com.gykj.base.adapter.BaseRecycleAdapter;
 import com.gykj.cameramodule.activity.image.ImageViewPager;
 import com.gykj.cameramodule.bean.ImagePagerBean;
 import com.gykj.cameramodule.bean.PhotoFile;
 import com.gykj.commontool.R;
+import com.gykj.utils.FileUtil;
 import com.gykj.utils.VibratorUtil;
 
 import java.io.File;

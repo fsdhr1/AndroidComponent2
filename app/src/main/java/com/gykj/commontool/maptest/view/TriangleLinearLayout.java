@@ -11,7 +11,9 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
-import com.grandtech.mapframe.core.util.MeasureUtil;
+import com.blankj.utilcode.util.SizeUtils;
+import com.grandtech.mapframe.ui.util.MeasureUtil;
+
 
 /**
  * @ClassName MyLinearLayout
@@ -53,8 +55,8 @@ public class TriangleLinearLayout extends ViewGroup {
         p.setAntiAlias(true);// 设置画笔的锯齿效果
         Path path1=new Path();
         path1.moveTo(getTop(), getLeft());
-        path1.lineTo(getTop()+MeasureUtil.dp2px(getContext(),45), getLeft());
-        path1.lineTo(getTop()+MeasureUtil.dp2px(getContext(),45), getLeft()+MeasureUtil.dp2px(getContext(),24));
+        path1.lineTo(getTop()+ MeasureUtil.dp2px(getContext(),45), getLeft());
+        path1.lineTo(getTop()+ MeasureUtil.dp2px(getContext(),45), getLeft()+MeasureUtil.dp2px(getContext(),24));
         path1.lineTo(getTop()+MeasureUtil.dp2px(getContext(),25), getLeft()+MeasureUtil.dp2px(getContext(),24));
         path1.lineTo(getTop()+MeasureUtil.dp2px(getContext(),22.5f), getLeft()+MeasureUtil.dp2px(getContext(),24));
         path1.lineTo(getTop()+MeasureUtil.dp2px(getContext(),20), getLeft()+MeasureUtil.dp2px(getContext(),24));

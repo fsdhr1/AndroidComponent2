@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.blankj.utilcode.util.SizeUtils;
 import com.grandtech.mapframe.core.GMap;
 import com.grandtech.mapframe.core.editor.gc.GraphicSetting;
 import com.grandtech.mapframe.core.enumeration.GeometryType;
@@ -24,7 +25,7 @@ import com.grandtech.mapframe.core.layer.IDoneListenerCallBack;
 import com.grandtech.mapframe.core.maps.GMapView;
 import com.grandtech.mapframe.core.maps.IOnMapReady;
 import com.grandtech.mapframe.core.marker.MarkerView;
-import com.grandtech.mapframe.core.util.MeasureUtil;
+
 import com.grandtech.mapframe.core.util.StringEngine;
 import com.gykj.commontool.R;
 import com.mapbox.mapboxsdk.annotations.Marker;
@@ -120,8 +121,8 @@ public class MarkerViewActivity extends AppCompatActivity implements IOnMapReady
         imageView.setImageResource(R.mipmap.camera_module_ic_back);
         imageView.setLayoutParams(layoutParams);*/
         MarkerView markerView =  new MarkerView(StringEngine.get32UUID(),point,view);
-        markerView.setOffsetX(-MeasureUtil.dp2px(this,220)/2);
-        markerView.setOffsetY(-MeasureUtil.dp2px(this,197));
+        markerView.setOffsetX(-SizeUtils.dp2px(220)/2);
+        markerView.setOffsetY(-SizeUtils.dp2px(197));
         gMapView.getMarkerViewManager().addMarker(markerView);
         return false;
     }

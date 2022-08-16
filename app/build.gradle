@@ -104,8 +104,8 @@ dependencies {
     implementation project(path: ':OssModule')
 //    implementation ('com.grandtech.common:common_tool_oss:0.0.0.2:@aar') { transitive = true }
 
-    //implementation('com.grandtech.common:common_tool_mapcore:0.0.4.8:@aar') { transitive = true }
-    implementation project(':MapFrameCoreModule')
+    implementation('com.grandtech.common:common_tool_mapcore:0.0.9.28:@aar') { transitive = true }
+   // implementation project(':MapFrameCoreModule')
     //implementation project(':MapFrameCoreModuleV10')
     implementation project(':MapFrameUIModule')
     // implementation ('com.grandtech.common:common_tool_mapcore:0.0.2.8:@aar') { transitive = true }
@@ -138,5 +138,8 @@ dependencies {
     implementation('com.grandtech.common:common_tool_location:0.0.0.3') { transitive = true }
     // 通用工具类
     implementation project(path: ':commonUtilModule')
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
+
 
 }

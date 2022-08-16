@@ -87,6 +87,7 @@ public class MapSnapshotTest  extends AppCompatActivity implements IOnMapReady, 
     private int index = 1;
     private RefreshGeoJsonRunnable refreshGeoJsonRunnable;
     private Handler handler;
+    private MapScreenshotTool mapScreenshotTool;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         GMap.getInstance(this);
@@ -247,10 +248,12 @@ public class MapSnapshotTest  extends AppCompatActivity implements IOnMapReady, 
         customAuto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String s = readLocalJson(MapSnapshotTest.this, "b.json");
+                String s = readLocalJson(MapSnapshotTest.this, "geojson.json");
                 FeatureCollection featureCollection = FeatureCollection.fromJson(s);
 
                 List<Feature> features = featureCollection.features();
+                mapScreenshotTool = new MapScreenshotTool();
+                LogUtils.i("自定义方式生成失败",features.size());
                 for (Feature feature : features) {
                     ScreenshotsSetting screenshotsSetting= new ScreenshotsSetting();
                     screenshotsSetting.setImageUrl("https://t0.tianditu.gov.cn/DataServer?T=img_w&x={x}&y={y}&l={z}&tk=583e63953a6ed6bf304e68120db4c512");
@@ -261,16 +264,16 @@ public class MapSnapshotTest  extends AppCompatActivity implements IOnMapReady, 
                     //screenshotsSetting.setWaters(Arrays.asList(split));
                     String cachePath = Environment.getExternalStorageDirectory().getAbsolutePath()+ File.separator+"toolmapframe" + File.separator +
                             "自定义" + File.separator + StringEngine.get32UUID() +".png";
-                    MapScreenshotTool.createMapScreenshotsAsync(screenshotsSetting,cachePath, new MapScreenshotTool.ICallBack() {
+                    mapScreenshotTool.createMapScreenshotsAsync(screenshotsSetting, cachePath,  new MapScreenshotTool.ICallBack() {
                         @Override
-                        public void onError(Throwable e) {
-                           // iCallBack.onError(e);
-                            LogUtils.i("自定义方式生成失败");
+                        public void onError() {
+                            // iCallBack.onError(e);
+                            LogUtils.i("自定义方式","自定义方式生成失败");
                         }
 
                         @Override
                         public void complete(ScreenshotsSetting screenshotsSetting, String path) {
-                            LogUtils.i("自定义方式生成成功："+path);
+                            LogUtils.i("自定义方式","自定义方式生成成功："+path);
                         }
                     });
                 }
@@ -321,6 +324,10 @@ public class MapSnapshotTest  extends AppCompatActivity implements IOnMapReady, 
     protected void onDestroy() {
         super.onDestroy();
         mGMapView.onDestroy();
+        if(mapScreenshotTool!=null){
+            mapScreenshotTool.stopCreateMapScreenshotsTask();
+        }
+
         //生成坐落图要关闭，避免在未生成完时关闭页面导致内存无法释放
         if(mAutoMapSnapshot!=null){
             mAutoMapSnapshot.cancel();
@@ -331,7 +338,7 @@ public class MapSnapshotTest  extends AppCompatActivity implements IOnMapReady, 
 
     @Override
     public void onBoxMapReady(MapboxMap mapboxMap) {
-        BoxHttpClient.getSingleton().addInterceptor(new Interceptor() {
+       /* BoxHttpClient.getSingleton().addInterceptor(new Interceptor() {
             @Override
             public Response intercept(Interceptor.Chain chain) throws IOException {
                 Log.i("gmbgl","requestUrl");
@@ -345,7 +352,7 @@ public class MapSnapshotTest  extends AppCompatActivity implements IOnMapReady, 
                 Response response = chain.proceed(builder.build());
                 return response;
             }
-        }).setToken("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiLogL_kvbPolYrkuKrkuroiLCJjb250ZXh0VXNlcklkIjoicDlGQjJDQTM4RDREOTQ0MjA4QjAwNDI2MkMwMEM2Rjc4IiwiY29udGV4dE5hbWUiOiJnZW8iLCJjb250ZXh0RGVwdElkIjoiMSIsImNvbnRleHRBcHBsaWNhdGlvbklkIjoiMSIsImV4cCI6MjYxMzIxODk2NDd9.dM92KheaX7Yp7GsHB_iFubyzV8KClL9mFKDy0a1AwXM");
+        }).setToken("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiLogL_kvbPolYrkuKrkuroiLCJjb250ZXh0VXNlcklkIjoicDlGQjJDQTM4RDREOTQ0MjA4QjAwNDI2MkMwMEM2Rjc4IiwiY29udGV4dE5hbWUiOiJnZW8iLCJjb250ZXh0RGVwdElkIjoiMSIsImNvbnRleHRBcHBsaWNhdGlvbklkIjoiMSIsImV4cCI6MjYxMzIxODk2NDd9.dM92KheaX7Yp7GsHB_iFubyzV8KClL9mFKDy0a1AwXM");*/
         String url ="http://gykj123.cn:9035/api/v1/styles/gykj/rJg3x0CN_7";
       //  String MAP_OFFLINE_STYLE_JSON ="asset://style.json";
      //   ConnectivityReceiver.instance(this).setConnected(true);
@@ -353,18 +360,18 @@ public class MapSnapshotTest  extends AppCompatActivity implements IOnMapReady, 
             @Override
             public void onStyleLoaded(@NonNull Style style) {
 
-                addRadarData(style);
-                refreshGeoJsonRunnable = new RefreshGeoJsonRunnable();
+               // addRadarData(style);
+               /* refreshGeoJsonRunnable = new RefreshGeoJsonRunnable();
                 do {
                     handler.postDelayed(refreshGeoJsonRunnable, 1000);
                 }
-                while (index == 37);
+                while (index == 37);*/
 
                 mGMapView.initSelection();
                 mGMapView.setSelectSetting(new SelectSetting(true,true,"种植地块"));
                 mGMapView.setMapEvent(MapSnapshotTest.this);
                 mGMapView.moveToLocation(34.09768527002947,114.46451392126596, 16.0,null);
-                ((MyApplication)MapSnapshotTest.this.getApplication()).gMapView =  mGMapView;
+               // ((MyApplication)MapSnapshotTest.this.getApplication()).gMapView =  mGMapView;
             }
         });
     }
