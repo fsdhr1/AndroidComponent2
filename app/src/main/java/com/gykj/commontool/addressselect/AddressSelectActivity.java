@@ -109,6 +109,22 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
             }
         });
 
+        /**
+         * 自定义 - 输入区划代码列表--选择其子集
+         * 可以选择到任意位置
+         */
+        Button mBtqhdm4 = findViewById(R.id.btn_list_custom_address_any_position);
+        EditText mEditText4 = new EditText(this);
+        AlertDialog mDialog4 = createCustomAddressListAlertDialogAnyPosition(mEditText4);
+        mBtqhdm4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View mView) {
+                if (mDialog4 != null) {
+                    mDialog4.show();
+                }
+            }
+        });
+
     }
 
     private AlertDialog createAlertDialog(EditText mEditText) {
@@ -209,6 +225,47 @@ public class AddressSelectActivity extends AppCompatActivity implements OnAddres
                         mAddressWidget
                                 .setOnAddressSelectedListener(AddressSelectActivity.this::onAddressSelected)
                                 .showWidgetList(mList);
+                        mInterface.dismiss();
+                    }
+                }).setNegativeButton("取消", null).create();
+        return mDialog;
+    }
+
+    private AlertDialog createCustomAddressListAlertDialogAnyPosition(EditText mEditText) {
+
+        AlertDialog mDialog = new AlertDialog.Builder(this).setTitle("请选择区划")
+                .setIcon(android.R.drawable.sym_def_app_icon)
+//                .setView(mEditText)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface mInterface, int index) {
+
+                        List<AddreBean> mList = new ArrayList<>();
+
+                        for (int i = 0; i < 2; i++) {
+                            AddreBean mBean = new AddreBean();
+                            if (i == 0) {
+                                mBean.setQhdm("13");
+                                mBean.setQhmc("河北");
+                            } else if (i == 1) {
+                                mBean.setQhdm("21");
+                                mBean.setQhmc("辽宁");
+                            }
+                            mList.add(mBean);
+                        }
+
+                        mAddressWidget = AddressWidgetUtils.getInstance().getWidgetNew(AddressSelectActivity.this);
+                        mAddressWidget
+                                .setOnAddressSelectedListener(AddressSelectActivity.this::onAddressSelected)
+                                .showWidgetList(mList, new onAddressConfirmClick() {
+                                    @Override
+                                    public void onAddressConfirmResp() {
+                                        if (mSelectBean != null) {
+                                            String mQhmc = mSelectBean.getQhmc();
+                                            Toast.makeText(AddressSelectActivity.this, mQhmc, Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
                         mInterface.dismiss();
                     }
                 }).setNegativeButton("取消", null).create();
