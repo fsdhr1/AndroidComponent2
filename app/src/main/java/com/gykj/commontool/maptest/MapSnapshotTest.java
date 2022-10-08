@@ -80,7 +80,7 @@ import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.fillColor;
  */
 public class MapSnapshotTest  extends AppCompatActivity implements IOnMapReady, IMapEvent {
 
-    private Button auto,auto1,custom,manual,customAuto;
+    private Button auto,auto1,custom,manual,customAuto,customAutoTotal;
     private GMapView mGMapView;
     private AutoMapSnapshot mAutoMapSnapshot;
     private FillLayer layer;
@@ -99,6 +99,7 @@ public class MapSnapshotTest  extends AppCompatActivity implements IOnMapReady, 
         manual = findViewById(R.id.manual);
         mGMapView = findViewById(R.id.mapView);
         customAuto = findViewById(R.id.custom_auto);
+        customAutoTotal = findViewById(R.id.custom_auto_total);
         handler = new Handler();
         mGMapView.init(this);
         auto1.setOnClickListener(new View.OnClickListener() {
@@ -253,7 +254,7 @@ public class MapSnapshotTest  extends AppCompatActivity implements IOnMapReady, 
 
                 List<Feature> features = featureCollection.features();
                 mapScreenshotTool = new MapScreenshotTool();
-                LogUtils.i("自定义方式生成失败",features.size());
+                LogUtils.i("自定义方式生成",features.size());
                 for (Feature feature : features) {
                     ScreenshotsSetting screenshotsSetting= new ScreenshotsSetting();
                     screenshotsSetting.setImageUrl("https://t0.tianditu.gov.cn/DataServer?T=img_w&x={x}&y={y}&l={z}&tk=583e63953a6ed6bf304e68120db4c512");
@@ -279,6 +280,40 @@ public class MapSnapshotTest  extends AppCompatActivity implements IOnMapReady, 
                 }
 
 
+            }
+        });
+
+        customAutoTotal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s = readLocalJson(MapSnapshotTest.this, "geojson.json");
+                FeatureCollection featureCollection = FeatureCollection.fromJson(s);
+                List<Feature> features = featureCollection.features();
+                mapScreenshotTool = new MapScreenshotTool();
+                LogUtils.i("自定义方式生成总图",features.size());
+                ScreenshotsSetting screenshotsSetting= new ScreenshotsSetting();
+                screenshotsSetting.setDrawRect(true);
+                screenshotsSetting.setImageUrl("https://t0.tianditu.gov.cn/DataServer?T=img_w&x={x}&y={y}&l={z}&tk=583e63953a6ed6bf304e68120db4c512");
+                for (Feature feature : features) {
+                    ScreenshotsFeatureStye screenshotsFeatureStye = new ScreenshotsFeatureStye();
+                    screenshotsFeatureStye.setFeature(feature);
+                    screenshotsFeatureStye.setDrawPolygonMark(false);
+                    screenshotsSetting.addScreenshotsFeatureStye(screenshotsFeatureStye);
+                }
+                String cachePath = Environment.getExternalStorageDirectory().getAbsolutePath()+ File.separator+"toolmapframe" + File.separator +
+                        "自定义总图" + File.separator + StringEngine.get32UUID() +".png";
+                mapScreenshotTool.createMapScreenshotsAsync(screenshotsSetting, cachePath,  new MapScreenshotTool.ICallBack() {
+                    @Override
+                    public void onError() {
+                        // iCallBack.onError(e);
+                        LogUtils.i("自定义方式","自定义方式生成失败");
+                    }
+
+                    @Override
+                    public void complete(ScreenshotsSetting screenshotsSetting, String path) {
+                        LogUtils.i("自定义方式","自定义方式生成成功："+path);
+                    }
+                });
             }
         });
     }
