@@ -8,13 +8,12 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.gykj.autoupdate.BaseConfig.Constants_test;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.gykj.autoupdate.utils.PermisionUtils;
 import com.gykj.autoupdate.utils.UpdateAppUtil;
 import com.gykj.commontool.R;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by ren on 2021/4/6
@@ -46,7 +45,7 @@ public class AutoUpdateTestActivity extends AppCompatActivity {
         // 1.使用默认Authority：${applicationId}.autoupdatefileprovider
 //        UpdateAppUtil util = UpdateAppUtil.getInstance(MainActivity.this);
         // 2.自定义外部Authority
-        UpdateAppUtil util = UpdateAppUtil.getInstance(AutoUpdateTestActivity.this, "com.gykj.commontool.autoupdatefileprovider");
+        UpdateAppUtil util = UpdateAppUtil.getInstance(getApplicationContext(), "com.gykj.commontool.autoupdatefileprovider");
 
 
         // 自定义弹窗
@@ -60,10 +59,10 @@ public class AutoUpdateTestActivity extends AppCompatActivity {
          *
          * 要测试，去Constants加个常量，测试完换回来，老乱了
          */
-        String appkey = Constants.AutoUpdateDemo_Key;
-        String signType = "debug"; // release / debug
+        String appkey = Constants.YourApp_Key;
+        String signType = Constants.YourApp_SignType; // release / debug
 
-        util.checkVersion(appkey, signType, Constants_test.CHECK_VERSION, new UpdateAppUtil.hotFixCallBack() {
+        util.checkVersion(appkey, signType, null, new UpdateAppUtil.hotFixCallBack() {
             @Override
             public void onHotFixVetrsionCallBack(final int hotFixVersion) {
                 runOnUiThread(new Runnable() {
