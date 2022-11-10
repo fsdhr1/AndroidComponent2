@@ -29,8 +29,10 @@ public class MyApplication extends Application {
         GrandPhotoHelper.init("com.gykj.commontool.autoupdatefileprovider");
 
         // 启动自动更新检测服务
-        UpdateServiceHelper.setShowDialogActivityName("AutoUpdateTestActivity");
-        UpdateServiceHelper.setOutsideAuthority("com.gykj.commontool.autoupdatefileprovider");
-        UpdateServiceHelper.getInstance(this, Constants.YourApp_Key, Constants.YourApp_SignType).startCheck();
+        UpdateServiceHelper.getInstance(this, Constants.YourApp_Key, Constants.YourApp_SignType)
+                .setOutsideAuthority("com.gykj.commontool.autoupdatefileprovider")
+                .setShowDialogActivityName("AutoUpdateTestActivity")
+                .setNumOfFailedReCheck(5)
+                .startCheck();
     }
 }
