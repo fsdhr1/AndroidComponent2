@@ -30,9 +30,13 @@ public class MyApplication extends Application {
 
         // 启动自动更新检测服务
         UpdateServiceHelper.getInstance(this, Constants.YourApp_Key, Constants.YourApp_SignType)
+                .setOtherCheckUrl(null)
                 .setOutsideAuthority("com.gykj.commontool.autoupdatefileprovider")
-                .setShowDialogActivityName("AutoUpdateTestActivity")
-                .setNumOfFailedReCheck(5)
+                .setShowDialogActivityName("AutoUpdateTestActivity") // 设置允许弹窗的页面
+                .setNumOfFailedReCheck(5) // 检查新版本失败 重试次数
+                .setDelayMillisOfReCheck(3000) // 检查新版本失败 重试间隔
+                .setTimeOfKeepWatchOnActivity(5000) // 弹窗监测 持续时长
+                .setDelayMillisOfReShowDialog(3000) // 弹窗失败 重试间隔
                 .startCheck();
     }
 }
