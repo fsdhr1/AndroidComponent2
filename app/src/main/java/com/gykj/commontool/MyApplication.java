@@ -7,8 +7,8 @@ import com.gykj.grandphotos.config.GrandPhotoHelper;
 import com.gykj.mvpbasemodule.MvpBaseModule;
 import com.gykj.networkmodule.NetworkHelper;
 import com.mapbox.android.core.crashreporter.CrashReport;
-
-import leakcanary.LeakCanary;
+import com.gykj.autoupdate.utils.UpdateServiceHelper;
+import com.gykj.commontool.autoupdatetest.Constants;
 
 /**
  * @author zyp
@@ -28,5 +28,15 @@ public class MyApplication extends Application {
         //
         GrandPhotoHelper.init("com.gykj.commontool.autoupdatefileprovider");
 
+        // 启动自动更新检测服务
+        UpdateServiceHelper.getInstance(this, Constants.YourApp_Key, Constants.YourApp_SignType)
+                .setOtherCheckUrl(null)
+                .setOutsideAuthority("com.gykj.commontool.autoupdatefileprovider")
+                .setShowDialogActivityName("AutoUpdateTestActivity") // 设置允许弹窗的页面
+                .setNumOfFailedReCheck(5) // 检查新版本失败 重试次数
+                .setDelayMillisOfReCheck(3000) // 检查新版本失败 重试间隔
+                .setTimeOfKeepWatchOnActivity(5000) // 弹窗监测 持续时长
+                .setDelayMillisOfReShowDialog(3000) // 弹窗失败 重试间隔
+                .startCheck();
     }
 }
