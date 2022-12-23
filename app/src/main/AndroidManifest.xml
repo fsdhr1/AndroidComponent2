@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".commonUtils.CommonUtilsTestActivity"></activity>
+        <activity
+            android:name=".imgCompressTest.ImgCompressActivity"
+            android:exported="false" />
+        <activity android:name=".commonUtils.CommonUtilsTestActivity" />
         <activity android:name=".addressSelectView.StartoverActivity" />
         <activity android:name=".addressSelectView.AddressSelectViewDemoActivity" />
         <activity android:name=".grandPhotos.GrandPhotoActivity" />
