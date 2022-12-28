@@ -95,7 +95,7 @@ public class CameraModuleTestActivity extends AppCompatActivity
             Intent intent = new Intent();
             ComponentName cn = new ComponentName(this, "com.gykj.cameramodule.activity.image.ImgPickActivity");// this--所属页面Context
             intent.setComponent(cn);
-            intent.putExtra("isBatch", false);// 是否批处理（连拍），非必传 不传默认false
+            intent.putExtra("isBatch", true);// 是否批处理（连拍），非必传 不传默认false
             intent.putExtra("filePath", path);// 拍摄的照片的存储路径，必传
             intent.putExtra("basePath", path);// 选择相册中的图片存储的路径，必传
             intent.putExtra("firstPath", localPath);// 判断优先显示的路径下有没有图片，有的话就优先显示，没有就不管他
@@ -113,7 +113,7 @@ public class CameraModuleTestActivity extends AppCompatActivity
             Intent intent = new Intent();
             ComponentName cn = new ComponentName(this, "com.gykj.cameramodule.activity.camera.CameraActivity");// this--所属页面Context
             intent.setComponent(cn);
-            intent.putExtra("isBatch", false);// 是否批处理（连拍），非必传 不传默认false
+            intent.putExtra("isBatch", true);// 是否批处理（连拍），非必传 不传默认false
             intent.putExtra("filePath", path);// 拍摄的照片的存储路径，必传
             intent.putExtra("extendName", "XCZP");// 拓展名，必传
             intent.putExtra("areaName", "areaName");// 水印信息显示的地点名称，非必传
