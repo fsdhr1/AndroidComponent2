@@ -141,5 +141,8 @@ dependencies {
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
 
+    // 图片压缩
+//    implementation project(path:':compressModule')
+    implementation(name: 'compressModule-release', ext: 'aar')
 
 }

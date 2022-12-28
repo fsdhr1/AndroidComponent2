@@ -151,6 +151,12 @@
                 android:textAllCaps="false"
                 android:onClick="onCommonUtilsClick"
                 android:text="CommonUtils" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:onClick="onCompressClick"
+                android:text="onCompressUtils" />
         </LinearLayout>
     </ScrollView>
 

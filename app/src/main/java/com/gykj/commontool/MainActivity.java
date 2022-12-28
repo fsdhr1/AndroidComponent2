@@ -17,6 +17,7 @@ import com.gykj.commontool.cameratest.CameraModuleTestActivity;
 import com.gykj.commontool.commonUtils.CommonUtilsTestActivity;
 import com.gykj.commontool.echarttest.EchartDemoActivity;
 import com.gykj.commontool.grandPhotos.GrandPhotoActivity;
+import com.gykj.commontool.imgCompressTest.ImgCompressActivity;
 import com.gykj.commontool.locationservicetest.LocationServiceTestActivity;
 import com.gykj.commontool.locationTest.LocationServiceTestActivity2;
 import com.gykj.commontool.maptest.MapTestActivity;
@@ -184,6 +185,14 @@ public class MainActivity extends AppCompatActivity {
      */
     public void onCommonUtilsClick(View view) {
         Intent mIntent = new Intent(this, CommonUtilsTestActivity.class);
+        startActivity(mIntent);
+    }
+
+    /**
+     * 通用工具类
+     */
+    public void onCompressClick(View view) {
+        Intent mIntent = new Intent(this, ImgCompressActivity.class);
         startActivity(mIntent);
     }
 
