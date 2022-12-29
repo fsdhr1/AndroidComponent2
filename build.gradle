@@ -58,6 +58,7 @@ buildscript {
         ext.hwidcard = '2.0.3.303'
         ext.hwbankcard = '2.0.3.302'
         ext.room = '2.2.5'
+        ext.kotlinxCoroutinesAndroid = '1.3.9'
     }
 }
 
