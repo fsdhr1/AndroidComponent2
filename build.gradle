@@ -14,7 +14,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.6.4'
-        classpath 'com.grandtech.common:common_tool_component_control_plugin:0.0.0.5'
+        classpath 'com.grandtech.common:common_tool_component_control_plugin:0.0.0.4_test3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -45,7 +45,7 @@ buildscript {
         ext.mapbox = '9.5.0'
         ext.okhttp = '4.9.2'
         ext.recyclerview = '1.1.0'
-        ext.retrofit = '2.9.0'
+        ext.retrofit = '2.10.0-SNAPSHOT_branch3'
         ext.rxandroid = '2.0.2'
         ext.rxbinding = '2.1.1'
         ext.rxjava = '2.1.11'
